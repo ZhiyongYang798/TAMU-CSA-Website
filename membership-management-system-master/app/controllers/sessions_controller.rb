@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   
   def create
     @user = User.find_by(name: params[:session][:name])
-    if @user != nil && @user[:uin] == params[:session][:uin]&& @user.authenticate(params[:session][:password])
+    if @user != nil && @user[:uin] == params[:session][:uin]&& @user.authenticate(params[:session][:password]) # add the password for checking to login, which is lacked in the legacy code. 
       # Log the user in and redirect to the user's show page.
       log_in (@user)
       redirect_to @user
