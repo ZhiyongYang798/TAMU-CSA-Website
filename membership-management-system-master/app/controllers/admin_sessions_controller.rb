@@ -3,19 +3,30 @@ class AdminSessionsController < ApplicationController
     
   end
   
-  def create
+ def create
+    begin
     admin = Admin.find_by(uin: params[:session][:uin])
-    if admin && admin.authenticate(params[:session][:password])
+    if admin && admin.authenticate(params[:session][:password])&& admin[:name] == params[:session][:name]
       # Log the user in and redirect to the user's show page.
       log_in admin
       #redirect_to admin
       redirect_to static_pages_adminhome_path
-    else
+    elsif ! admin.authenticate(params[:session][:password]) && admin[:name] == params[:session][:name]
+      flash.now[:danger] = 'Wrong Password !'
+      render 'new'
+    elsif admin[:name] != params[:session][:name] && admin.authenticate(params[:session][:password])
       # Create an error message.
-      flash.now[:danger] = 'Invalid UIN or Name !' # Not quite right!
+      flash.now[:danger] = 'Invalid Name !' # Not quite right!
+      render 'new'
+    else
+      flash.now[:danger] = 'Invalid Name and Wrong Password !' # Not quite right!
       render 'new'
     end
+   rescue
+   flash.now[:danger]='Invalid UIN !'
+   render 'new'
   end
+end
   
   def destroy
     log_out
