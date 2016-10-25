@@ -2,17 +2,28 @@ class SessionsController < ApplicationController
   def new
   end
   
-  def create
+def create
+    begin 
     @user = User.find_by(name: params[:session][:name])
-    if @user != nil && @user[:uin] == params[:session][:uin]&& @user.authenticate(params[:session][:password]) # add the password for checking to login, which is lacked in the legacy code. 
+    if @user != nil && @user[:uin] == params[:session][:uin]&& @user.authenticate(params[:session][:password])
       # Log the user in and redirect to the user's show page.
       log_in (@user)
       redirect_to @user
-    else
+    elsif !@user.authenticate(params[:session][:password]) && @user[:uin] == params[:session][:uin]
+      flash.now[:danger] = 'Wrong Password !'
+      render 'new'
+    elsif @user.authenticate(params[:session][:password]) && @user[:uin] != params[:session][:uin]
       # Create an error message.
-      flash.now[:danger] = 'Invalid Name or UIN !' # Not quite right!
+      flash.now[:danger] = 'Invalid UIN !' # Not quite right!
+      render 'new'
+    else
+      flash.now[:danger] = 'Invalid UIN and Wrong Password !' # Not quite right!
       render 'new'
     end
+    rescue
+    flash.now[:danger]='Invalid Name !'
+    render 'new'
+  end
   end
   
   def destroy
