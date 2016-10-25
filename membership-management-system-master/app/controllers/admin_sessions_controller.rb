@@ -12,14 +12,14 @@ class AdminSessionsController < ApplicationController
       #redirect_to admin
       redirect_to static_pages_adminhome_path
     elsif ! admin.authenticate(params[:session][:password]) && admin[:name] == params[:session][:name]
-      flash.now[:danger] = 'Wrong Password !'
+      flash.now[:danger] = 'Wrong Password Only !'
       render 'new'
     elsif admin[:name] != params[:session][:name] && admin.authenticate(params[:session][:password])
       # Create an error message.
-      flash.now[:danger] = 'Invalid Name !' # Not quite right!
+      flash.now[:danger] = 'Wrong Name Only !' # Not quite right!
       render 'new'
     else
-      flash.now[:danger] = 'Invalid Name and Wrong Password !' # Not quite right!
+      flash.now[:danger] = 'Wrong Name and Wrong Password !' # Not quite right!
       render 'new'
     end
    rescue
