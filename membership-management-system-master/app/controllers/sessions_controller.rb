@@ -10,14 +10,14 @@ def create
       log_in (@user)
       redirect_to @user
     elsif !@user.authenticate(params[:session][:password]) && @user[:uin] == params[:session][:uin]
-      flash.now[:danger] = 'Wrong Password !'
+      flash.now[:danger] = 'Wrong Password Only !'
       render 'new'
     elsif @user.authenticate(params[:session][:password]) && @user[:uin] != params[:session][:uin]
       # Create an error message.
-      flash.now[:danger] = 'Invalid UIN !' # Not quite right!
+      flash.now[:danger] = 'Wrong UIN Only !' # Not quite right!
       render 'new'
     else
-      flash.now[:danger] = 'Invalid UIN and Wrong Password !' # Not quite right!
+      flash.now[:danger] = 'Wrong UIN and Wrong Password !' # Not quite right!
       render 'new'
     end
     rescue
