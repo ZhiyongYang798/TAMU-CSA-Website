@@ -5,7 +5,8 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-
+    @sortby =params[:sortby]||session[:sortby]
+    @search=params[:search]||session[:search]
     if params[:search]
      redirect =false
   
@@ -56,38 +57,51 @@ class UsersController < ApplicationController
           end
       
       
+         if @sortby=="name"
+           @users = User.order(@sortby)
+         elsif @sortby=="dynasty"
+           @users = User.order(@sortby)
+         else
+           @users = User.order("name")
+         end
          if @membership && @classification && @dynasty
           
-              @users = User.where(:membership =>@membership, :classification => @classification,:dynasty =>@dynasty).paginate(:page => params[:page],per_page:20) 
+              @users = @users.where(:membership =>@membership, :classification => @classification,:dynasty =>@dynasty).paginate(:page => params[:page],per_page:20).order(@sortby) 
          elsif  @membership && @classification
-              @users = User.where(:membership =>@membership,:classification => @classification).paginate(:page => params[:page],per_page:20)
+              @users = @users.where(:membership =>@membership,:classification => @classification).paginate(:page => params[:page],per_page:20).order(@sortby)
               
          elsif  @membership && @dynasty
-              @users = User.where(:membership =>@membership,:dynasty => @dynasty).paginate(:page => params[:page],per_page:20) 
+              @users = @users.where(:membership =>@membership,:dynasty => @dynasty).paginate(:page => params[:page],per_page:20).order(@sortby)
               
          elsif @classification && @dynasty
-              @users = User.where(:classification => @classification, :dynasty =>@dynasty).paginate(:page => params[:page],per_page:20)     
+              @users = @users.where(:classification => @classification, :dynasty =>@dynasty).paginate(:page => params[:page],per_page:20).order(@sortby)    
           
          elsif @membership 
-             @users = User.where(:membership =>@membership).paginate(:page => params[:page],per_page:20)
+             @users = @users.where(:membership =>@membership).paginate(:page => params[:page],per_page:20).order(@sortby)
               
          elsif @classification
-              @users = User.where(:classification => @classification).paginate(:page => params[:page],per_page:20)
+              @users = @users.where(:classification => @classification).paginate(:page => params[:page],per_page:20).order(@sortby)
               
          elsif @dynasty
-              @users = User.where(:dynasty => @dynasty).paginate(:page => params[:page],per_page:20)
-                
+              @users = @users.where(:dynasty => @dynasty).paginate(:page => params[:page],per_page:20).order(@sortby)     
          else
-              @users= User.paginate(:page => params[:page],per_page:20)
+              @users= @users.paginate(:page => params[:page],per_page:20).order(@sortby)
          end
-    else
+     else
+         if @sortby=="name"
+        @users = User.order(@sortby)
+         elsif @sortby=="dynasty"
+        @users = User.order(@sortby).order("name")
+         else
+        @users = User.order("name")
+         end
    
-       @users= User.paginate(:page => params[:page],per_page:20)
+       @users= @users.paginate(:page => params[:page],per_page:20)
        session[:membership]=nil
        session[:classification]=nil
        session[:dynasty]=nil
+       session[:search]=nil
     end
-   
   end
 
   # GET /users/1
