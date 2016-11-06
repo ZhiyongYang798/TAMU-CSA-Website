@@ -53,41 +53,43 @@ class EventsController < ApplicationController
                redirect_to users_path(:category =>@category, :semester => @semester,:year =>@year,:search => params[:search])
      end
     
+    @events = Event.sort
     #filter
      if @category && @semester && @year
-              @events = Event.where(:category =>@category, :semester => @semester,:year =>@year).paginate(:page => params[:page],per_page:20) 
+              @events = @events.where(:category =>@category, :semester => @semester,:year =>@year).paginate(:page => params[:page],per_page:20) 
 
      elsif  @category && @semester
-              @events = Event.where(:category =>@category, :semester => @semester).paginate(:page => params[:page],per_page:20)
+              @events = @events.where(:category =>@category, :semester => @semester).paginate(:page => params[:page],per_page:20)
               
      elsif  @category && @year
-              @events = Event.where(:category =>@category,:year =>@year).paginate(:page => params[:page],per_page:20)
+              @events = @events.where(:category =>@category,:year =>@year).paginate(:page => params[:page],per_page:20)
               
      elsif @semester && @year
-              @events = Event.where(:semester => @semester,:year =>@year).paginate(:page => params[:page],per_page:20)     
+              @events = @events.where(:semester => @semester,:year =>@year).paginate(:page => params[:page],per_page:20)     
           
      elsif @category
-              @events = Event.where(:category =>@category).paginate(:page => params[:page],per_page:20)
+              @events = @events.where(:category =>@category).paginate(:page => params[:page],per_page:20)
               
      elsif @semester
-              @events = Event.where(:semester => @semester).paginate(:page => params[:page],per_page:20)
+              @events = @events.where(:semester => @semester).paginate(:page => params[:page],per_page:20)
 
      elsif @year
-              @events = Event.where(:year =>@year).paginate(:page => params[:page],per_page:20)
+              @events = @events.where(:year =>@year).paginate(:page => params[:page],per_page:20)
                 
      else
-              @events= Event.paginate(:page => params[:page],per_page:20)
+              @events= @events.paginate(:page => params[:page],per_page:20)
 
      end
 
    else
     
-      @events = Event.paginate(:page => params[:page],per_page:20)
+      @events = Event.sort.paginate(:page => params[:page],per_page:20)
       session[:category]=nil
       session[:semester]=nil
       session[:year]=nil
 
    end
+  
 
   end
 
