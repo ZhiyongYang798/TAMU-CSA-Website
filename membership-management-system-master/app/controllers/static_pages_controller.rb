@@ -16,48 +16,56 @@ class StaticPagesController < ApplicationController
        @users = User.where(:classification => params[:classification],:dynasty => params[:dynasty])
         @numbers = @users.count
          @total = 0
+         @point = {}
         @users.each do |user|
           @s = 0
           user.events.each do |event|
             @m = PointRule.find_by_name(event.category).score
             @s = @s + @m
           end
+          @point[user.uin] = @s
           @total = @total + @s
           @average = @total/@numbers
         end
-         @report = {:total =>@total, :average =>@average}  
+         @report = {:Total =>@total, :Average =>@average}  
      elsif params[:classification]
      
         @users = User.where(:classification => params[:classification])
          @numbers = @users.count
          @total = 0
+        @point = {}
         @users.each do |user|
           @s = 0
           user.events.each do |event|
             @m = PointRule.find_by_name(event.category).score
             @s = @s + @m
           end
+          @point[user.uin] = @s
           @total = @total + @s
           @average = @total/@numbers
         end
-         @report = {:total =>@total, :average =>@average}  
+         @report = {:Total =>@total, :Average =>@average}  
      elsif params[:dynasty]
         @users = User.where(:dynasty => params[:dynasty])
          @numbers = @users.count
          @total = 0
+        @point = {}
         @users.each do |user|
           @s = 0
           user.events.each do |event|
             @m = PointRule.find_by_name(event.category).score
             @s = @s + @m
           end
+          @point[user.uin] = @s
           @total = @total + @s
           @average = @total/@numbers
         end
-      @report = {:total =>@total, :average =>@average}  
+      @report = {:Total =>@total, :Average =>@average}  
       end
     else
-      @report = {:total =>"N/A", :average =>"N/A"} 
+      @point={}
+      @users={}
+      @report = {:Total =>"N/A", :Average =>"N/A"} 
     end
   end
   
