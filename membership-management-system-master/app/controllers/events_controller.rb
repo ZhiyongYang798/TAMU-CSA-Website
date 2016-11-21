@@ -97,6 +97,15 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
   @eventusers = @event.users.paginate(:page => params[:page],per_page:5)
+  @point ={}
+  @eventusers.each do |user|
+  	@s =0
+  	user.events.each do |event|
+  		@m = PointRule.find_by_name(event.category).score
+  		@s = @s + @m
+  	end
+  	@point[user.uin] = @s
+  end
   end
 
   # GET /events/new
