@@ -35,7 +35,14 @@
     <%= f.label :dynasty %><br>
     <%= f.text_field :dynasty %>
   </div>
-  <div class="actions">
+  <div class="field">
+    <%= f.label :password %><br>
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation %><br>
+    <%= f.password_field :password_confirmation %>
+  </div><div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
