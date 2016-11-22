@@ -148,30 +148,34 @@ PointRule.create!([
   {name: "General meeting", score: 1}
 ])
 User.create!([
-  {name: "Eddy", uin: "323006658", tel: "9795873517", email: "njuyangyang@tamu.edu", membership: "Yes", shirt: "Yes", classification: "Graduate", dynasty: "Tang"},
-  {name: "Jim", uin: "938483920", tel: "9798753120", email: "jim@tamu.edu", membership: "Yes", shirt: "No", classification: "PhD", dynasty: "Tang"},
-  {name: "Tammy", uin: "989223096", tel: "9798031759", email: "tammy123@tamu.edu", membership: "No", shirt: "Yes", classification: "Freshman", dynasty: "Tang"},
-  {name: "Alex", uin: "989740990", tel: "9795678975", email: "alexx@gmail.com", membership: "No", shirt: "No", classification: "Sophomore", dynasty: "Tang"},
-  {name: "Lucy", uin: "875349900", tel: "9792130956", email: "lucy233@gmail.com", membership: "Yes", shirt: "Yes", classification: "Junior", dynasty: "Han"},
-  {name: "Ketty", uin: "874507834", tel: "9791234567", email: "ketty.hello@gmail.com", membership: "Yes", shirt: "No", classification: "Senior", dynasty: "Han"},
-  {name: "Brad", uin: "876543123", tel: "9798883434", email: "brady@gmail.com", membership: "No", shirt: "Yes", classification: "Graduate", dynasty: "Han"},
-  {name: "Herman", uin: "748980453", tel: "9795862314", email: "herman@tamu.edu", membership: "No", shirt: "No", classification: "PhD", dynasty: "Han"},
-  {name: "Jenna", uin: "567876989", tel: "9795871212", email: "jenna@gmail.com", membership: "Yes", shirt: "Yes", classification: "Freshman", dynasty: "Shang"},
-  {name: "Josh", uin: "678098345", tel: "9797879999", email: "josh.texas@gmail.com", membership: "Yes", shirt: "No", classification: "Sophomore", dynasty: "Shang"},
-  {name: "Jose", uin: "111222333", tel: "9797774444", email: "josebest@gmail.com", membership: "No", shirt: "Yes", classification: "Junior", dynasty: "Shang"},
-  {name: "Nina", uin: "979487341", tel: "9795743845", email: "nina1995@gmail.com", membership: "No", shirt: "No", classification: "Senior", dynasty: "Shang"},
-  {name: "Bruce", uin: "211000333", tel: "9795874538", email: "bru@gmail.com", membership: "Yes", shirt: "Yes", classification: "Graduate", dynasty: "Qing"},
-  {name: "William", uin: "900888444", tel: "9795809809", email: "william@gmail.com", membership: "Yes", shirt: "No", classification: "PhD", dynasty: "Qing"},
-  {name: "Richard", uin: "787454000", tel: "9795890123", email: "richard@gmail.com", membership: "No", shirt: "Yes", classification: "Freshman", dynasty: "Qing"},
-  {name: "Kevin", uin: "876987987", tel: "9798766789", email: "kevin@texas.gov", membership: "No", shirt: "No", classification: "Sophomore", dynasty: "Qing"},
-  {name: "Alice", uin: "567876098", tel: "9790987894", email: "allce@alice.com", membership: "Yes", shirt: "Yes", classification: "Junior", dynasty: "Song"},
-  {name: "Ben", uin: "233333333", tel: "9792333333", email: "ben233@gmail.com", membership: "Yes", shirt: "No", classification: "Senior", dynasty: "Song"},
-  {name: "Tylor", uin: "344344349", tel: "9793445555", email: "tylor@swift.com", membership: "No", shirt: "Yes", classification: "Graduate", dynasty: "Song"},
-  {name: "Cucumber", uin: "788799677", tel: "9797889090", email: "cucu@ber.com", membership: "No", shirt: "No", classification: "PhD", dynasty: "Song"}
+  {name: "Eddy", uin: "323006658", tel: "9795873517", email: "njuyangyang@tamu.edu", membership: "Yes", shirt: "Yes", classification: "Graduate", dynasty: "Tang", password:"234567"},
+  {name: "Jim", uin: "938483920", tel: "9798753120", email: "jim@tamu.edu", membership: "Yes", shirt: "No", classification: "PhD", dynasty: "Tang", password:"345678"},
+  {name: "Tammy", uin: "989223096", tel: "9798031759", email: "tammy123@tamu.edu", membership: "No", shirt: "Yes", classification: "Freshman", dynasty: "Tang", password:"456789"},
+  {name: "Alex", uin: "989740990", tel: "9795678975", email: "alexx@gmail.com", membership: "No", shirt: "No", classification: "Sophomore", dynasty: "Tang", password:"567890"},
+  {name: "Lucy", uin: "875349900", tel: "9792130956", email: "lucy233@gmail.com", membership: "Yes", shirt: "Yes", classification: "Junior", dynasty: "Han", password:"678901"},
+  {name: "Ketty", uin: "874507834", tel: "9791234567", email: "ketty.hello@gmail.com", membership: "Yes", shirt: "No", classification: "Senior", dynasty: "Han", password:"789012"},
+  {name: "Brad", uin: "876543123", tel: "9798883434", email: "brady@gmail.com", membership: "No", shirt: "Yes", classification: "Graduate", dynasty: "Han", password:"890123"},
+  {name: "Herman", uin: "748980453", tel: "9795862314", email: "herman@tamu.edu", membership: "No", shirt: "No", classification: "PhD", dynasty: "Han", password:"901234"},
+  {name: "Jenna", uin: "567876989", tel: "9795871212", email: "jenna@gmail.com", membership: "Yes", shirt: "Yes", classification: "Freshman", dynasty: "Shang", password:"012345"},
+  {name: "Josh", uin: "678098345", tel: "9797879999", email: "josh.texas@gmail.com", membership: "Yes", shirt: "No", classification: "Sophomore", dynasty: "Shang", password:"987654"},
+  {name: "Jose", uin: "111222333", tel: "9797774444", email: "josebest@gmail.com", membership: "No", shirt: "Yes", classification: "Junior", dynasty: "Shang", password:"876543"},
+  {name: "Nina", uin: "979487341", tel: "9795743845", email: "nina1995@gmail.com", membership: "No", shirt: "No", classification: "Senior", dynasty: "Shang", password:"765432"},
+  {name: "Bruce", uin: "211000333", tel: "9795874538", email: "bru@gmail.com", membership: "Yes", shirt: "Yes", classification: "Graduate", dynasty: "Qing", password:"654321"},
+  {name: "William", uin: "900888444", tel: "9795809809", email: "william@gmail.com", membership: "Yes", shirt: "No", classification: "PhD", dynasty: "Qing", password:"112233"},
+  {name: "Richard", uin: "787454000", tel: "9795890123", email: "richard@gmail.com", membership: "No", shirt: "Yes", classification: "Freshman", dynasty: "Qing", password:"223344"},
+  {name: "Kevin", uin: "876987987", tel: "9798766789", email: "kevin@texas.gov", membership: "No", shirt: "No", classification: "Sophomore", dynasty: "Qing", password:"334455"},
+  {name: "Alice", uin: "567876098", tel: "9790987894", email: "allce@alice.com", membership: "Yes", shirt: "Yes", classification: "Junior", dynasty: "Song", password:"556677"},
+  {name: "Ben", uin: "233333333", tel: "9792333333", email: "ben233@gmail.com", membership: "Yes", shirt: "No", classification: "Senior", dynasty: "Song", password:"667788"},
+  {name: "Tylor", uin: "344344349", tel: "9793445555", email: "tylor@swift.com", membership: "No", shirt: "Yes", classification: "Graduate", dynasty: "Song", password:"778899"},
+  {name: "Cucumber", uin: "788799677", tel: "9797889090", email: "cucu@ber.com", membership: "No", shirt: "No", classification: "PhD", dynasty: "Song", password:"889900"}
 ])
 
-Admin.create!([
-  {name: "Admin", uin: "00000000", tel: "9795873517", email: "njuyangyang@tamu.edu",password:"qwe12345"}
-])
-
+# Admin.create!([
+#   {name: "Admin", uin: "00000000", tel: "9795873517", email: "njuyangyang@tamu.edu", password:"qwe12345"},
+#   {name: "Geek", uin: "606", tel: "9795873517", email: "arui35@outlook.com", password:"123456"}
+# ])
+admins = [{name: "Admin", uin: "00000000", tel: "9795873517", email: "njuyangyang@tamu.edu", password:"qwe12345"}]
+admins.each do |ad|
+  Admin.create!(ad)
+end
 
