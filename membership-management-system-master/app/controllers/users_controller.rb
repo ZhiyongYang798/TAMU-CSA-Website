@@ -56,10 +56,11 @@ class UsersController < ApplicationController
                redirect_to users_path(:membership =>@membership, :classification => @classification,:dynasty =>@dynasty,:search => params[:search])
           end
       
-      
          if @sortby=="name"
            @users = User.order(@sortby)
          elsif @sortby=="dynasty"
+           @users = User.order(@sortby)
+         elsif @sortby=="points"
            @users = User.order(@sortby)
          else
            @users = User.order("name")
@@ -87,14 +88,16 @@ class UsersController < ApplicationController
          else
               @users= @users.paginate(:page => params[:page],per_page:20).order(@sortby)
          end
-     else
-         if @sortby=="name"
+    else
+      if @sortby=="name"
         @users = User.order(@sortby)
-         elsif @sortby=="dynasty"
+      elsif @sortby=="dynasty"
         @users = User.order(@sortby).order("name")
-         else
+      elsif @sortby=="points"
+        @users = User.order(@sortby).order("name")
+      else
         @users = User.order("name")
-         end
+      end
    
        @users= @users.paginate(:page => params[:page],per_page:20)
        session[:membership]=nil
@@ -102,6 +105,7 @@ class UsersController < ApplicationController
        session[:dynasty]=nil
        session[:search]=nil
     end
+   
   end
 
   # GET /users/1
@@ -136,7 +140,6 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.points=0
-    
     respond_to do |format|
       if @user.save
         log_in @user
