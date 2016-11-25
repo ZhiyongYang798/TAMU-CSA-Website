@@ -16,14 +16,14 @@ class StaticPagesController < ApplicationController
        @users = User.where(:classification => params[:classification],:dynasty => params[:dynasty])
         @numbers = @users.count
          @total = 0
-         @point = {}
+        # @point = {}
         @users.each do |user|
           @s = 0
           user.events.each do |event|
             @m = PointRule.find_by_name(event.category).score
             @s = @s + @m
           end
-          @point[user.uin] = @s
+         # @point[user.uin] = @s
           @total = @total + @s
           @average = @total/@numbers
         end
@@ -33,14 +33,14 @@ class StaticPagesController < ApplicationController
         @users = User.where(:classification => params[:classification])
          @numbers = @users.count
          @total = 0
-        @point = {}
+        # @point = {}
         @users.each do |user|
           @s = 0
           user.events.each do |event|
             @m = PointRule.find_by_name(event.category).score
             @s = @s + @m
           end
-          @point[user.uin] = @s
+        #  @point[user.uin] = @s
           @total = @total + @s
           @average = @total/@numbers
         end
@@ -49,21 +49,21 @@ class StaticPagesController < ApplicationController
         @users = User.where(:dynasty => params[:dynasty])
          @numbers = @users.count
          @total = 0
-        @point = {}
+        # @point = {}
         @users.each do |user|
           @s = 0
           user.events.each do |event|
             @m = PointRule.find_by_name(event.category).score
             @s = @s + @m
           end
-          @point[user.uin] = @s
+         # @point[user.uin] = @s
           @total = @total + @s
           @average = @total/@numbers
         end
       @report = {:Total =>@total, :Average =>@average}  
       end
     else
-      @point={}
+     # @point={}
       @users={}
       @report = {:Total =>"N/A", :Average =>"N/A"} 
     end
