@@ -17,22 +17,18 @@
 <legend>Choose groups you want:</legend>
 <label for="classification">Classification:</label>
 <select name=classification[] form="userform" multiple="multiple">
-  <option value="Freshman">Freshman</option>
-  <option value="Sophomore">Sophomore</option>
-  <option value="Junior">Junior</option>
-  <option value="Senior">Senior</option>
-  <option value="Graduate">Graduate</option>
-  <option value="PhD">PhD</option>
+  <% @classificationlist.each_value do |classification| %>
+         <option value="<%= classification %>"><%= classification %></option>
+    <% end %>
   <option>Cmd for Multi-Choice</option>
 </select>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <label for="dynasty">Dynasty:</label>
 <select name=dynasty[] form="userform" multiple="multiple">
-  <option value="Tang">Tang</option>
-  <option value="Song">Song</option>
-  <option value="Shang">Shang</option>
-  <option value="Qing">Qing</option>
+    <% @dynastylist.each_value do |dynasty| %>
+         <option value="<%= dynasty %>"><%= dynasty %></option>
+    <% end %>
   <option>Cmd for Multi-Choice</option>
 </select>
 
