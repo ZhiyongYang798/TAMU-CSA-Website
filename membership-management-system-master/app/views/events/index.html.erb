@@ -20,27 +20,25 @@
 <legend>Choose groups you want:</legend>
 <label for="category">Category:</label>
 <select name="category[]" form="eventform"  multiple="multiple">
-  <option value="Concession">Concession</option>
-  <option value="Service">Service</option>
-  <option value="IMs participant">IMs participant</option>
-  <option value="Social event">Social event</option>
-  <option value="Supporting IMs">Supporting IMs</option>
-  <option value="Service">Service</option>
-  <option value="General meeting">General meeting</option>
+    <% @categorylist.each_value do |category| %>
+         <option value="<%= category %>"><%= category %></option>
+    <% end %>
 </select>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <label for="year">Year:</label>
 <select name=year[] form="eventform" multiple="multiple">
-  <option value="2015">2015</option>
-  <option value="2016">2016</option>
+    <% @yearlist.each_value do |year| %>
+         <option value="<%= year %>"><%= year %></option>
+    <% end %>
 </select>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <label for="semester">Semester: </label>
 <select name=semester[] form="eventform" multiple="multiple">
-  <option value="Fall">Fall</option>
-  <option value="Spring">Spring</option>
+    <% @semesterlist.each_value do |semester| %>     
+         <option value="<%= semester %>"><%= semester %></option>
+    <% end %>
 </select>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
