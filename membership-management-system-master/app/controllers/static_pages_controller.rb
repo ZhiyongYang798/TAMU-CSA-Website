@@ -67,11 +67,36 @@ class StaticPagesController < ApplicationController
           @average = @total/@numbers
         end
       @report = {:Total =>@total, :Average =>@average}  
-      end
+
     else
      # @point={}
-      @users={}
-      @report = {:Total =>"N/A", :Average =>"N/A"} 
+      @users = User.all
+        @numbers = @users.count
+         @total = 0
+        # @point = {}
+        @users.each do |user|
+          @s = user.points
+         # @point[user.uin] = @s
+          @total = @total + @s
+          @average = @total/@numbers
+         end
+         
+         @report = {:Total =>@total, :Average =>@average}
+      end
+      
+     else
+      @users = User.all
+        @numbers = @users.count
+         @total = 0
+        # @point = {}
+        @users.each do |user|
+          @s = user.points
+         # @point[user.uin] = @s
+          @total = @total + @s
+          @average = @total/@numbers
+         end
+         
+         @report = {:Total =>@total, :Average =>@average}
     end
   end
   
