@@ -25,7 +25,7 @@ class EventsController < ApplicationController
      end
   
      if params[:search]
-     redirect=false
+     #redirect=false
 
      if params[:category]
         @category=params[:category]
@@ -33,7 +33,7 @@ class EventsController < ApplicationController
 
      elsif session[:category]&&session[:category].length != 0
         @category=session[:category]
-        redirect=true
+        #redirect=true
 
      else
         @category=nil
@@ -46,7 +46,7 @@ class EventsController < ApplicationController
     
      elsif session[:semester]&&session[:semester].length !=0
         @semester=session[:semester]
-        redirect=true
+        #redirect=true
 
      else 
         @semester=nil
@@ -60,16 +60,16 @@ class EventsController < ApplicationController
 
      elsif session[:year]&&session[:year].length !=0
         @year=session[:year]
-        redirect=true
+        #redirect=true
 
      else 
         @year=nil
 
      end
 
-     if redirect
-               redirect_to users_path(:category =>@category, :semester => @semester,:year =>@year,:search => params[:search])
-     end
+     #if redirect
+               #redirect_to users_path(:category =>@category, :semester => @semester,:year =>@year,:search => params[:search])
+     #end
     
     @events = Event.sort
     #filter
