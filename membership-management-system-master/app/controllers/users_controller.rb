@@ -5,6 +5,30 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    
+    @membershiplist = Hash.new
+    @classificationlist = Hash.new
+    @dynastylist = Hash.new
+    
+     User.all.each do |user| 
+         if(!@membershiplist.has_value?(user.membership))
+         @membershiplist[user.membership] = user.membership
+        end
+        
+        if(!@classificationlist.has_value?(user.classification))
+        @classificationlist[user.classification] = user.classification
+       end
+       
+    end
+    
+    Dynasty.all.each do |dynasty| 
+        if(!@dynastylist.has_value?(dynasty.name))
+         @dynastylist[dynasty.name] = dynasty.name
+       end
+     end
+    
+    
+    
     session[:eve] = nil
     @sortby =params[:sortby]||session[:sortby]
     @search=params[:search]||session[:search]
