@@ -5,6 +5,24 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
+    
+    @categorylist = Hash.new
+    @yearlist = Hash.new
+    @semesterlist = Hash.new
+    
+     Event.all.each do |event| 
+         if(!@categorylist.has_value?(event.category))
+         @categorylist[event.category] = event.category
+        end
+        
+        if(!@yearlist.has_value?(event.year))
+         @yearlist[event.year] = event.year
+       end
+       
+       if(!@semesterlist.has_value?(event.semester))
+         @semesterlist[event.semester] = event.semester
+       end
+     end
   
      if params[:search]
      redirect=false
