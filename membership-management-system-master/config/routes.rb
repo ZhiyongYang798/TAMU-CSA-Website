@@ -2,8 +2,6 @@ Rails.application.routes.draw do
   get 'sessions/new'
   get 'admin_sessions/new'
 
-  resources :events
-  resources :users
   resources :dynasties
   resources :point_rules
   resources :admins
@@ -19,6 +17,22 @@ Rails.application.routes.draw do
   get 'static_pages/imagesvolunteer'
   get 'static_pages/imagessports'
 
+resources :users do
+  member do
+    get 'showevent'
+    get 'register'
+    get 'checkin'
+    get 'eventinfo'
+  end
+end
+
+ resources :events do
+   member do
+    get 'changepoint'
+    patch 'changeexecute'
+  end
+end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -30,6 +44,7 @@ Rails.application.routes.draw do
   post 'events/:id' => 'events#checkin'
   post 'static_pages/login'   => 'sessions#create'
   delete 'static_pages/logout'  => 'sessions#destroy'
+  patch 'users/:id' => 'events#changeexecute'
   
   get 'adminlogin'   => 'admin_sessions#new'
   post 'adminlogin'   => 'admin_sessions#create'

@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    session[:eve] = nil
     @sortby =params[:sortby]||session[:sortby]
     @search=params[:search]||session[:search]
     if params[:search]
@@ -119,7 +120,13 @@ class UsersController < ApplicationController
   if params[:checkin]
     @event = Event.find(params[:eventid])
   end
+  @point = {}
    @userevents =  @user.events.paginate(:page => params[:page],per_page:5)
+    @userevents.each do |event|
+      @point[event.id] = PointRule.find_by_name(event.category).score
+    end
+    session[:current_user] = nil
+    session[:current_user] = @user.id
   end
   
 
@@ -179,6 +186,67 @@ class UsersController < ApplicationController
     end
   end
 
+  def showevent
+   if params[:remove]
+     @event = Event.find(params[:eventid])
+     @event.users.delete(@user)
+     redirect_to event_path(@event)
+   end 
+   if params[:checkin]
+    @event = Event.find(params[:eventid])
+   end
+   @user=User.find(params[:id])
+   @point = {}
+   @userevents =  @user.events.paginate(:page => params[:page],per_page:5)
+    @userevents.each do |event|
+      @point[event.id] = PointRule.find_by_name(event.category).score
+    end
+  end
+
+  def register
+    @user=User.find(params[:id])
+    @events = Event.sort.paginate(:page => params[:page],per_page:20)
+  end
+
+  def checkin
+      @user = User.find(params[:id])
+      @event = Event.find(params[:number])
+  if @user != nil
+        # Log the user in and redirect to the user's show page.
+    if @event.users !=nil
+      @event.users.each do |user|
+         if (user == @user)
+           redirect_to register_user_path(@user)
+           flash[:notice] = "You have already registered for the event!"
+           return
+         end
+      end
+    end
+      @event.users<<@user
+      redirect_to register_user_path(@user)
+      flash[:notice] = "Register Successfully!"
+  else
+      # Create an error message.
+      redirect_to register_user_path(@user)
+      flash[:notice] = "Invalid UIN"
+  end
+  end
+
+  def eventinfo
+    @use = session[:current_user]
+    @event=Event.find(params[:id])
+    @eventusers = @event.users.paginate(:page => params[:page],per_page:5)
+    @point ={}
+    @eventusers.each do |user|
+    @s =0
+    user.events.each do |event|
+      @m = PointRule.find_by_name(event.category).score
+      @s = @s + @m
+    end
+    @point[user.uin] = @s
+  end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -210,7 +278,7 @@ class UsersController < ApplicationController
     
     def log_in(user)
     session[:user_id] = user.id
-  end
+    end
   
   # Returns the current logged-in user (if any).
   def current_user
@@ -227,4 +295,6 @@ class UsersController < ApplicationController
     session.delete(:user_id)
     @current_user = nil
   end
+
+
 end

@@ -6,16 +6,16 @@ Dynasty.create!([
   {name: "Song"}
 ])
 Event.create!([
-  {name: "Easter", year: 2016, semester: "Spring", category: "Concession", description: ""},
-  {name: "Sea World", year: 2016, semester: "Spring", category: "Service", description: ""},
-  {name: "Six Flag", year: 2016, semester: "Spring", category: "IMs participant", description: ""},
-  {name: "Football", year: 2015, semester: "Fall", category: "Concession", description: ""},
-  {name: "Adventure", year: 2015, semester: "Fall", category: "Supporting IMs", description: ""},
-  {name: "Music", year: 2015, semester: "Fall", category: "Social event", description: ""},
-  {name: "Farm", year: 2015, semester: "Fall", category: "IMs participant", description: ""},
-  {name: "Movie Night", year: 2015, semester: "Spring", category: "Concession", description: ""},
-  {name: "Hot Dog", year: 2015, semester: "Spring", category: "Service", description: ""},
-  {name: "Computer Game", year: 2015, semester: "Spring", category: "General meeting", description: ""}
+  {name: "Easter", year: 2016, semester: "Spring", category: "Concession", description: "", datetime: "11-12"},
+  {name: "Sea World", year: 2016, semester: "Spring", category: "Service", description: "", datetime: "11-12"},
+  {name: "Six Flag", year: 2016, semester: "Spring", category: "IMs participant", description: "", datetime: "11-12"},
+  {name: "Football", year: 2015, semester: "Fall", category: "Concession", description: "", datetime: "11-12"},
+  {name: "Adventure", year: 2015, semester: "Fall", category: "Supporting IMs", description: "", datetime: "11-12"},
+  {name: "Music", year: 2015, semester: "Fall", category: "Social event", description: "", datetime: "11-12"},
+  {name: "Farm", year: 2015, semester: "Fall", category: "IMs participant", description: "", datetime: "11-12"},
+  {name: "Movie Night", year: 2015, semester: "Spring", category: "Concession", description: "", datetime: "11-12"},
+  {name: "Hot Dog", year: 2015, semester: "Spring", category: "Service", description: "", datetime: "11-12"},
+  {name: "Computer Game", year: 2015, semester: "Spring", category: "General meeting", description: "", datetime: "11-12"}
 ])
 Event::HABTM_Users.create!([
   {event_id: 1, user_id: 1},

@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Name:</strong>
   <%= @event.name %>
@@ -21,19 +19,26 @@
 </p>
 
 <p>
-  <strong>Description:</strong>
-  <%= @event.description %>
+  <strong>Date:</strong>
+  <%= @event.datetime %>
 </p>
 
-<p class="btn btn-default" role="button"><%= link_to 'Edit', edit_event_path(@event) %></p>
-<p class="btn btn-default" role="button"><%= link_to 'Back', events_path %></p>
+<strong>Description:</strong>
+<pre>
+  <%= @event.description %>
+</pre>
+
+<p class="btn btn-default" role="button"><%= link_to 'Edit', edit_event_path(@event, :in => :in) %></p>
+
+<br>
 <br>
 <br>
 <div >
   <div >
-    <%= form_for(:user, :url => {:controller => "events", :action => "checkin"}) do |f| %>
-    
- 
+    <%= form_for(:user, :url => {:controller => "events", :action => "checkin"}) do |f| %> 
+     <p>
+      <%= "You can use this to add additional users to the event" %>
+     </p>
       <%= label_tag(:uin, "UIN") %>
       <%= f.text_field :uin %>
       
@@ -73,16 +78,16 @@
         <td><%= user.shirt %></td>
         <td><%= user.classification %></td>
         <td><%= user.dynasty %></td>
-        <td><%= @point[user.uin] %></td>
+        <td><%= user.points %></td>
         <td><%= link_to 'Show', user_path(user,:checkin => :checkin,:eventid => @event.id) %></td>
-        <td><%= link_to 'Edit', edit_user_path(user,:checkin => :checkin,:eventid => @event.id) %></td>
+        <td><%= link_to 'ChgPts', changepoint_event_path(user) %></td>
         <td><%= link_to 'Remove',user_path(user,:remove => :remove,:eventid => @event.id), data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Add',:user, :controller => "events", :action => "checkin", :id => @event.id, :uin => user.uin %></td>
       </tr>
     <% end %> 
   </tbody>
 </table>
       <%= will_paginate @eventusers %>
 <% end %>
-
+<br>
+<p class="btn btn-default" role="button"><%= link_to 'Back', events_path %></p>
 

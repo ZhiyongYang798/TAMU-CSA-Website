@@ -18,11 +18,7 @@ class StaticPagesController < ApplicationController
          @total = 0
         # @point = {}
         @users.each do |user|
-          @s = 0
-          user.events.each do |event|
-            @m = PointRule.find_by_name(event.category).score
-            @s = @s + @m
-          end
+          @s = user.points
          # @point[user.uin] = @s
           @total = @total + @s
           @average = @total/@numbers
@@ -35,12 +31,8 @@ class StaticPagesController < ApplicationController
          @total = 0
         # @point = {}
         @users.each do |user|
-          @s = 0
-          user.events.each do |event|
-            @m = PointRule.find_by_name(event.category).score
-            @s = @s + @m
-          end
-        #  @point[user.uin] = @s
+          @s = user.points
+         # @point[user.uin] = @s
           @total = @total + @s
           @average = @total/@numbers
         end
@@ -51,11 +43,7 @@ class StaticPagesController < ApplicationController
          @total = 0
         # @point = {}
         @users.each do |user|
-          @s = 0
-          user.events.each do |event|
-            @m = PointRule.find_by_name(event.category).score
-            @s = @s + @m
-          end
+          @s = user.points
          # @point[user.uin] = @s
           @total = @total + @s
           @average = @total/@numbers

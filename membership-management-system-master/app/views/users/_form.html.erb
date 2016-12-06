@@ -35,14 +35,17 @@
     <%= f.label :dynasty %><br>
     <%= f.text_field :dynasty %>
   </div>
+  <% if !params[:checkin] && !params[:check] && !params[:admin] %>
   <div class="field">
     <%= f.label :password %><br>
-    <%= f.password_field :password %>
+    <%= f.password_field :password , value: "345678" %>
   </div>
   <div class="field">
     <%= f.label :password_confirmation %><br>
-    <%= f.password_field :password_confirmation %>
-  </div><div class="actions">
+    <%= f.password_field :password_confirmation, value: "345678" %>
+  </div>
+  <% end %>
+  <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>

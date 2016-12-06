@@ -96,6 +96,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+  @eve = Event.find(params[:id])
   @eventusers = @event.users.paginate(:page => params[:page],per_page:5)
   @point ={}
   @eventusers.each do |user|
@@ -106,6 +107,8 @@ class EventsController < ApplicationController
   	end
   	@point[user.uin] = @s
   end
+  session[:eve] = nil
+  session[:eve] = @eve.id
   end
 
   # GET /events/new
@@ -166,7 +169,7 @@ class EventsController < ApplicationController
       @event.users.each do |user|
          if (user == @user)
            redirect_to event_path
-           flash[:notice] = "This UIN Has Already Checked in"
+           flash[:notice] = "This UIN Has Already Checked in!"
            return
          end
       end
@@ -178,6 +181,19 @@ class EventsController < ApplicationController
       redirect_to event_path(@event)
       flash[:notice] = "Invalid UIN"
   end
+  end
+
+  def changepoint
+    @user=User.find(params[:id])
+    @eves = session[:eve]
+  end
+
+  def changeexecute
+    @m = User.find(params[:id])
+    @m.points = @m.points + params[:user][:points].to_i
+    @m.save!
+    redirect_to event_path(session[:eve])
+    flash[:notice] = "Points changed successfully!"
   end
 
   
