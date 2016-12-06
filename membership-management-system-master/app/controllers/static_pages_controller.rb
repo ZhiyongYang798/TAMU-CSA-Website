@@ -10,6 +10,24 @@ class StaticPagesController < ApplicationController
   end
   
   def report
+    
+    @classificationlist = Hash.new
+    @dynastylist = Hash.new
+    
+     User.all.each do |user| 
+        
+        if(!@classificationlist.has_value?(user.classification))
+        @classificationlist[user.classification] = user.classification
+       end
+       
+    end
+    
+    Dynasty.all.each do |dynasty| 
+        if(!@dynastylist.has_value?(dynasty.name))
+         @dynastylist[dynasty.name] = dynasty.name
+       end
+    end
+    
     if params[:search]
 
       if params[:classification] && params[:dynasty]
