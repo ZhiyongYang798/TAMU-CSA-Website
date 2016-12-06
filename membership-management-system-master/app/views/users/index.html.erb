@@ -20,30 +20,27 @@
 <label for="membership">Membership:</label>
 <select name="membership" form="userform">
   <option></option>
-  <option value="Yes">Yes</option>
-  <option value="No">No</option>
+    <% @membershiplist.each_value do |membership| %>
+         <option value="<%= membership %>"><%= membership %></option>
+    <% end %>
 </select>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <label for="classification">Classification:</label>
 <select name=classification[] form="userform" multiple="multiple">
   <option>Cmd for Multi-Choice</option>
-  <option value="Freshman">Freshman</option>
-  <option value="Sophomore">Sophomore</option>
-  <option value="Junior">Junior</option>
-  <option value="Senior">Senior</option>
-  <option value="Graduate">Graduate</option>
-  <option value="PhD">PhD</option>
+   <% @classificationlist.each_value do |classification| %>
+         <option value="<%= classification %>"><%= classification %></option>
+    <% end %>
 </select>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <label for="dynasty">Dynasty:</label>
 <select name=dynasty[] form="userform" multiple="multiple">
   <option>Cmd for Multi-Choice</option>
-  <option value="Tang">Tang</option>
-  <option value="Song">Song</option>
-  <option value="Shang">Shang</option>
-  <option value="Qing">Qing</option>
+   <% @dynastylist.each_value do |dynasty| %>
+         <option value="<%= dynasty %>"><%= dynasty %></option>
+    <% end %>
 </select>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
