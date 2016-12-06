@@ -1,0 +1,93 @@
+<html>
+  <head>
+      <style>
+           fieldset {
+           border: 2px solid grey;
+           width: 1140px;          
+           }
+    </style>
+  </head>
+  
+
+<body>
+<h1>Listing Events</h1>
+<br>
+<br>
+<form  method="get" id="eventform">
+<br>
+<br>
+<fieldset>
+<legend>Choose groups you want:</legend>
+<label for="category">Category:</label>
+<select name="category[]" form="eventform"  multiple="multiple">
+  <option value="Concession">Concession</option>
+  <option value="Service">Service</option>
+  <option value="IMs participant">IMs participant</option>
+  <option value="Social event">Social event</option>
+  <option value="Supporting IMs">Supporting IMs</option>
+  <option value="Service">Service</option>
+  <option value="General meeting">General meeting</option>
+</select>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<label for="year">Year:</label>
+<select name=year[] form="eventform" multiple="multiple">
+  <option value="2015">2015</option>
+  <option value="2016">2016</option>
+</select>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<label for="semester">Semester: </label>
+<select name=semester[] form="eventform" multiple="multiple">
+  <option value="Fall">Fall</option>
+  <option value="Spring">Spring</option>
+</select>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input name=search type="Submit" value="Search">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input name=reset type="Submit" value="Reset">
+</fieldset>
+</form>
+<br>
+<br>
+<br>
+
+<fieldset>
+<h2 class="sub-header">Detail</h2>
+<div class="table-responsive">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Year</th>
+      <th>Semester</th>
+      <th>Category</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+</thead>
+
+
+<tbody>
+    <% @events.each do |event| %>
+      <tr>
+        <td><%= event.name %></td>
+        <td><%= event.year %></td>
+        <td><%= event.semester %></td>
+        <td><%= event.category %></td>
+        <td><%= event.description %></td>
+        <td><%= link_to 'Show', event %></td>
+        <td><%= link_to 'Edit', edit_event_path(event) %></td>
+        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+    <%= will_paginate @events %>
+</fieldset>
+
+<br>
+
+<p class="btn btn-default" role="button"><%= link_to 'New Event', new_event_path %></p>
+<p class="btn btn-default" role="button"><%= link_to "Back to Dashborad", static_pages_adminhome_path %></p>
