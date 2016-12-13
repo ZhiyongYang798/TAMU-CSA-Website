@@ -39,12 +39,12 @@ class UsersController < ApplicationController
             if params[:membership].length !=0
               
                  @membership = params[:membership]
-                 session[:membership] = params[:membership]
+                 #session[:membership] = params[:membership]
             end 
        
-          elsif session[:membership] && session[:membership].length != 0
-              @membership = session[:membership]
-              redirect =true
+          #elsif session[:membership] && session[:membership].length != 0
+              #@membership = session[:membership]
+              #redirect =true
           else
               @membership = nil
           end
@@ -52,13 +52,13 @@ class UsersController < ApplicationController
           if params[:classification]
     
                  @classification = params[:classification]
-                 session[:classification] = params[:classification]
+                 #session[:classification] = params[:classification]
            
        
-          elsif session[:classification] && session[:classification].length != 0
+          #elsif session[:classification] && session[:classification].length != 0
       
-              @classification = session[:classification]
-              redirect =true
+              #@classification = session[:classification]
+              #redirect =true
           else
               @classification = nil
           end
@@ -66,13 +66,13 @@ class UsersController < ApplicationController
            if params[:dynasty]
     
                  @dynasty = params[:dynasty]
-                 session[:dynasty] = params[:dynasty]
+                 #session[:dynasty] = params[:dynasty]
            
        
-          elsif session[:dynasty] && session[:dynasty].length != 0
+          #elsif session[:dynasty] && session[:dynasty].length != 0
       
-              @dynasty = session[:dynasty]
-              redirect =true
+              #@dynasty = session[:dynasty]
+              #redirect =true
           else
               @dynasty = nil
            end

@@ -18,7 +18,7 @@
 <fieldset>
 <legend>Choose groups you want:</legend>
 <label for="membership">Membership:</label>
-<select name="membership" form="userform">
+<select name="membership" form="userform" id = "test">
   <option></option>
     <% @membershiplist.each_value do |membership| %>
          <option value="<%= membership %>"><%= membership %></option>
@@ -44,9 +44,9 @@
 </select>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input name=search type="Submit" value="Search">
+<input name="search" type="Submit" value="Search">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input name=reset type="Submit" value="Reset">
+<input name="reset" type="Submit" value="Reset">
 </fieldset>
 </form>
 <br>

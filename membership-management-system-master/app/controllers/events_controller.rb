@@ -29,10 +29,10 @@ class EventsController < ApplicationController
 
      if params[:category]
         @category=params[:category]
-        session[:category]=params[:category]
+        #session[:category]=params[:category]
 
-     elsif session[:category]&&session[:category].length != 0
-        @category=session[:category]
+     #elsif session[:category]&&session[:category].length != 0
+        #@category=session[:category]
         #redirect=true
 
      else
@@ -42,10 +42,10 @@ class EventsController < ApplicationController
  
      if params[:semester]
         @semester=params[:semester]
-        session[:semester]=params[:semester]
+        #session[:semester]=params[:semester]
     
-     elsif session[:semester]&&session[:semester].length !=0
-        @semester=session[:semester]
+     #elsif session[:semester]&&session[:semester].length !=0
+       # @semester=session[:semester]
         #redirect=true
 
      else 
@@ -56,10 +56,10 @@ class EventsController < ApplicationController
      if params[:year]
 
         @year=params[:year]
-        session[:year]=params[:year]
+        #session[:year]=params[:year]
 
-     elsif session[:year]&&session[:year].length !=0
-        @year=session[:year]
+     #elsif session[:year]&&session[:year].length !=0
+       # @year=session[:year]
         #redirect=true
 
      else 
