@@ -125,7 +125,7 @@ class EventsController < ApplicationController
   	end
   	@point[user.uin] = @s
   end
-  session[:eve] = nil
+  #session[:eve] = nil
   session[:eve] = @eve.id
   end
 
