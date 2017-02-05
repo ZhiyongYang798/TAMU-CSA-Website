@@ -9,6 +9,37 @@
   <strong>Score:</strong>
   <%= @point_rule.score %>
 </p>
+<!--
+<p class="btn btn-default" role="button"><%= link_to 'Edit', edit_point_rule_path(@point_rule, :in => :in) %></p>
+-->
+<h2 class="sub-header">Detail</h2>
+<div class="table-responsive">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Year</th>
+      <th>Semester</th>
+      <th>Category</th>
+      <th>DateTime</th>
+      <th colspan="4"  style="text-align:center;">Operation</th>
+    </tr> 
+  </thead>
+
+  <tbody>
+    <% @point_rulesevents.each do |event| %>
+      <tr>
+        <td><%= event.name %></td>
+        <td><%= event.year %></td>
+        <td><%= event.semester %></td>
+        <td><%= event.category %></td>
+        <td><%= event.datetime %></td>
+      </tr>
+    <% end %> 
+  </tbody>
+</table>
+      <%= will_paginate @point_rulesevents %>
+<br>
 
 <p class="btn btn-default" role="button"><%= link_to 'Edit', edit_point_rule_path(@point_rule) %></p>
 <p class="btn btn-default" role="button"><%= link_to 'Back', point_rules_path %></p>

@@ -10,6 +10,8 @@ class PointRulesController < ApplicationController
   # GET /point_rules/1
   # GET /point_rules/1.json
   def show
+    @eventall = Event.all
+    @point_rulesevents=@eventall.where(:category => @point_rule.name).paginate(:page => params[:page],per_page:5)
   end
 
   # GET /point_rules/new
